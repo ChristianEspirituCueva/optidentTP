@@ -6,10 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface AppointmentService {
-    //Page<Appointment> getAllAppointmentsByPostId(Long postId, Pageable pageable);
-    //Appointment getAppointmentByIdAndPostId(Long postId, Long commentId);
-    Appointment createAppointment(Long postId, Appointment comment);
-    Appointment updateAppointment(Long postId, Long commentId, Appointment commentDetails);
+    Page<Appointment> getAllAppointments(Pageable pageable);
+    Appointment createAppointment(Long appointment);
+    Appointment updateAppointment(Long appointmentId, Appointment appointmentDetails);
     ResponseEntity<?> deleteAppointment(Long postId, Long commentId);
 }
 

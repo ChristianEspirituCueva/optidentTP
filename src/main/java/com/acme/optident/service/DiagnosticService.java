@@ -1,9 +1,15 @@
 package com.acme.optident.service;
 
+import com.acme.optident.model.ClinicHistory;
+import com.acme.optident.model.Diagnostic;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface DiagnosticService {
-    Comment createComment(Long postId, Comment comment);
-    Comment updateComment(Long postId, Long commentId, Comment commentDetails);
-    ResponseEntity<?> deleteComment(Long postId, Long commentId);
+//CORREGIR
+    Page<ClinicHistory> getAllClinicHistories(Pageable pageable);
+    ClinicHistory createClinicHistory(Long clinicHistoryId);
+    ClinicHistory updateClinicHistory(Long clinicHistoryId, ClinicHistory clinicHistoryDetails);
+    ResponseEntity<?> deleteClinicHistory(Long clinicHistoryId);
 }
