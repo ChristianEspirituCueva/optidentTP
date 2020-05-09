@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 public class DatingDetails {
     @Id
@@ -20,4 +21,9 @@ public class DatingDetails {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private ClinicHistory clinicHistory;
+
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name="diagnostic_id", nullable=false)
+    private List<Diagnostic> diagnostics;
+
 }
