@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = " Appointment")
 @Getter
 @Setter
-public class Appointment {
+public class Appointment extends AuditModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
