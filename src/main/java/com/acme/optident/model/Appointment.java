@@ -18,17 +18,17 @@ public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @NotNull
     @Lob
     @DateTimeFormat
-    public Date Fecha;
+    public Date fecha;
 
     @NotNull
     @Lob
     @DateTimeFormat
-    public Time Hora;
+    public Time hora;
 
     @NotNull
     @Lob
