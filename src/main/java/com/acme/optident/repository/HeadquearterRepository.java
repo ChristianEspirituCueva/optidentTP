@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface HeadquearterRepository  extends JpaRepository<Headquarter, Long> {
-    Page<Headquarter> findByClinicId(Long HeadqueartersId, Pageable pageable);
-
+    Page<Headquarter> findByClinicId(Long ClinicId, Pageable pageable);
     Optional<Headquarter> findByIdAndClinicsId(Long id, Long ClinicId);
 }
