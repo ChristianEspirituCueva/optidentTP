@@ -54,6 +54,6 @@ public class Appointment extends AuditModel{
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Specialty specialty;
-    
+
 
 }

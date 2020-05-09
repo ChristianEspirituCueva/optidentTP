@@ -1,9 +1,10 @@
 package com.acme.optident.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
 
 public class DatingDetails {
     @Id
@@ -13,4 +14,10 @@ public class DatingDetails {
 
     @Column(name = "Description",length = 30,nullable = false)
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name = "HClinic_id",nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private ClinicHistory clinicHistory;
 }
