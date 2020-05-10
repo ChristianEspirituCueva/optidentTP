@@ -1,10 +1,13 @@
 package com.acme.optident.service;
 
-import com.acme.optident.model.DatingDetails;
+import com.acme.optident.model.DatingDetail;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface DatingDetailService {
-    DatingDetails createComment(Long postId, Comment comment);
-    Comment updateComment(Long postId, Long commentId, Comment commentDetails);
-    ResponseEntity<?> deleteComment(Long postId, Long commentId);
+    Page<DatingDetail> getAllDatingDetails(Pageable pageable);
+    DatingDetail createClinicHistory(Long datingDetails);
+    DatingDetail updateClinicHistory(Long datingDetailsId, DatingDetail datingDetailsDetail);
+    ResponseEntity<?> deleteClinic(Long datingDetailsId);
 }

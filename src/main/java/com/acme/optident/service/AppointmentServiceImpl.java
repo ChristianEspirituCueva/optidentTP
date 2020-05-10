@@ -1,37 +1,39 @@
 package com.acme.optident.service;
 
+import com.acme.optident.model.Appointment;
+import com.acme.optident.repository.AppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
-public class AppointmentServiceImpl {
-    @Override
-    public Comment createComment(Long postId, Comment comment) {
-        return postRepository.findById(postId).map(post -> {
-            comment.setPost(post);
-            return commentRepository.save(comment);
-        }).orElseThrow(() -> new ResourceNotFoundException(
-                "Post", "Id", postId));
 
+public class AppointmentServiceImpl implements AppointmentService{
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
+    @Override
+    public Page<Appointment> getAllAppointment(Pageable pageable) { return appointmentRepository.findAll(pageable); }
+
+    @Override
+    public Appointment createAppointment(Appointment appointment) {
+        return appointmentRepository.save(appointment);
     }
 
     @Override
-    public Comment updateComment(Long postId, Long commentId, Comment commentDetails) {
-        if(!postRepository.existsById(postId))
-            throw new ResourceNotFoundException("Post", "Id", postId);
-
-        return commentRepository.findById(commentId).map(comment -> {
-            comment.setText(commentDetails.getText());
-            return commentRepository.save(comment);
-        }).orElseThrow(() -> new ResourceNotFoundException("Comment", "Id", commentId));
-
+    public Appointment updateAppointment(Long appointmentId, Appointment appointmentDetails) {
+        return appointmentRepository.findById(appointmentId).map(appointment -> {
+            appointment.setName(appointmentDetails.getName());
+            return appointmentRepository.save(appointment);
+        }).orElseThrow(() -> new ResourceNotFoundException("Tag", "Id", appointmentId));
     }
 
     @Override
-    public ResponseEntity<?> deleteComment(Long postId, Long commentId) {
-        return commentRepository.findByIdAndPostId(commentId, postId).map(comment -> {
-            commentRepository.delete(comment);
+    public ResponseEntity<?> deleteTag(Long appointmentId) {
+        return appointmentRepository.findById(appointmentId).map(appointment -> {
+            appointmentRepository.delete(appointment);
             return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException(
-                "Comment not found with Id " + commentId + " and PostId " + postId));
-
+        }).orElseThrow(() -> new ResourceNotFoundException("Tag", "Id", appointmentId));
     }
 }
