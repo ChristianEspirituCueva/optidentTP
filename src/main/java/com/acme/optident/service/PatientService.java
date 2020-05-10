@@ -1,9 +1,14 @@
 package com.acme.optident.service;
 
+import com.acme.optident.model.Patient;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface PatientService {
-    Comment createComment(Long postId, Comment comment);
-    Comment updateComment(Long postId, Long commentId, Comment commentDetails);
-    ResponseEntity<?> deleteComment(Long postId, Long commentId);
+    Page<Patient> getPatients(Pageable pageable);
+    Patient createPatient(Long Patient);
+    Patient updatePatient(Long PatientId, Patient PatientDetails);
+    ResponseEntity<?> deletePatient(Long PatientId);
+
 }
